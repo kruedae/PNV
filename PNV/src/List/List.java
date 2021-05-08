@@ -11,9 +11,9 @@ package List;
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 public class List <T>{
-    Node head;
-    Node tail;
-    int count;
+    private Node head;
+    private Node tail;
+    private int count;
 
     public List() {
         head = null;
