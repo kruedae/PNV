@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 
-package List;
+package List ;
 
 
-public class Node <T>{
+public class Node<T> {
     Node prev;
     Node next;
     T key;

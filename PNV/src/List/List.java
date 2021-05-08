@@ -3,20 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package List;
 
-/**
- * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
- */
-public class List <T>{
-    private Node head;
-    private Node tail;
+
+public class List<T> {
+
+    private Node<T> head;
+    private Node<T> tail;
     private int count;
+    
 
     public List() {
-        head = null;
+        head = null;        
         tail = null;
         count = 0;
     }
@@ -30,7 +28,7 @@ public class List <T>{
         Node temporal = new Node(key);
         if (isEmpty()) {
             head = temporal;
-            tail = temporal;
+            tail = head;
         } else {
             temporal.next = head;
             head.prev = temporal;
@@ -39,33 +37,32 @@ public class List <T>{
         count++;
     }
 
-    public Object topFront() {
+    public T topFront() {
         if (isEmpty()) {
             return null;
         } else {
             return head.key;
         }
     }
-    
+
     public void popFront() {
-        if (isEmpty()) {            
-        } else if(count != 1){
+        if (isEmpty()) {
+        } else if (count != 1) {
             head = head.next;
             head.prev = null;
             count--;
-            if(head == null){
+            if (head == null) {
                 tail = null;
             }
-        }
-        else{
+        } else {
             clean();
         }
     }
-    
+
     public void pushback(T key) {
         if (isEmpty()) {
             head = new Node(key);
-            tail = new Node(key);
+            tail = head;
         } else {
             Node temporal = new Node(key);
             temporal.prev = tail;
@@ -74,46 +71,50 @@ public class List <T>{
         }
         count++;
     }
-    
-    public Object topBack() {
-        if (isEmpty()){
+
+    public T topBack() {
+        if (isEmpty()) {
             return null;
-        }
-        else{
+        } else {
             return tail.key;
         }
     }
-    
-    public void popBack(){
-        if(isEmpty()){
-        }else if(count != 1){
+
+    public void popBack() {
+        if (isEmpty()) {
+        } else if (count != 1) {
             tail = tail.prev;
             tail.next = null;
-            if(tail == null){
+            if (tail == null) {
                 head = null;
             }
-            else{
-                clean();
-            }
+        } else {
+            clean();
         }
         count--;
     }
-    
-    public Object Get(int index) {
-        Node temp = head;
-        for (int i = 0; i < index && index < count; i++) {
-            temp = temp.next;
+
+    public T Get(int index) {
+        Node<T> temp = head;
+        if (index >= count) {
+            return null;
+        } else {
+            for (int i = 0; i < index; i++) {
+                temp = temp.next;
+            }
+            return temp.key;
         }
-        return temp.key;
     }
 
     public int size() {
         return count;
     }
-    
-    public void clean(){
+
+    public void clean() {
         head = null;
         tail = null;
         count = 0;
     }
+
+    
 }
