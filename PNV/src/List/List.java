@@ -8,7 +8,7 @@ package List;
 
 public class List<T> {
 
-    private Node<T> head;
+    protected Node<T> head;
     private Node<T> tail;
     private int count;
     

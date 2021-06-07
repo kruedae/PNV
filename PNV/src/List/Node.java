@@ -8,9 +8,9 @@ package List ;
 
 
 public class Node<T> {
-    Node prev;
-    Node next;
-    T key;
+    public Node prev;
+    public Node next;
+    public T key;
     
     
     public Node(T key){
