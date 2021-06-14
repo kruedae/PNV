@@ -22,6 +22,5 @@ public class Main {
         colombia.sort();
         System.out.print("Después de hacer sort: ");
         colombia.print();
-
     }
 }

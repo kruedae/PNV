@@ -16,51 +16,72 @@ public class ColombiaList extends List<Region> {
         if (this.isEmpty()) {
             System.out.println("La lista está vacía");
         } else {
-            //Es recorrida y organizada la lista 
+            //Es recorrida y organizada la lista el while se ejecutará hasta que la lista esté organizada
             while (this.isSorted() != true) {
                 for (Node e = this.head; e.next != null; e = e.next) {
                     //Regions a evaluar 
                     Region regionActual = (Region) e.key;
                     Region regionSiguiente = (Region) e.next.key;
 
-                    //Caso general
                     if (regionActual.poblaccion < regionSiguiente.poblaccion) {
-                        if (e.next.next != null) {
+                        if (e.next.next != null && e != this.head) {        //Caso general
                             e.next.prev = e.prev;
                             e.prev.next = e.next;
                             e.prev = e.next;
                             e.next = e.next.next;
                             e.prev.next.prev = e;
                             e.prev.next = e;
-                        } else {
+                        } else if (e.next.next == null) {        //Caso en dónde la Region intercambiada queda en la última posición
                             e.next.prev = e.prev;
                             e.prev.next = e.next;
                             e.prev = e.next;
                             e.next = e.next.next;
                             //e.prev.next.prev = e;
                             e.prev.next = e;
-
+                            this.tail = e;
+                        } else if (e == this.head) {        //Caso en dónde el intercambio ocurre al comienzo de la lista
+                            e.next.prev = null;
+                            e.next = e.next.next;
+                            e.next.prev.next = e;
+                            e.prev = e.next.prev;
+                            e.next.prev = e;
+                            head = e.prev;
                         }
 
                     } else if (regionActual.poblaccion == regionSiguiente.poblaccion) {     //Si son iguales en población, orden lexicográfico
                         if (regionActual.region.compareTo(regionSiguiente.region) > 0) {
-                            e.next.prev = e.prev;
-                            e.prev.next = e.next;
-                            e.prev = e.next;
-                            e.next = e.next.next;
-                            e.prev.next.prev = e;
-                            e.prev.next = e;
+                            if (e.next.next != null && e != this.head) {        //Caso general
+                                e.next.prev = e.prev;
+                                e.prev.next = e.next;
+                                e.prev = e.next;
+                                e.next = e.next.next;
+                                e.prev.next.prev = e;
+                                e.prev.next = e;
+                            } else if (e.next.next == null) {        //Caso en dónde la Region intercambiada queda en la última posición
+                                e.next.prev = e.prev;
+                                e.prev.next = e.next;
+                                e.prev = e.next;
+                                e.next = e.next.next;
+                                //e.prev.next.prev = e;
+                                e.prev.next = e;
+                                this.tail = e;
+                            } else if (e == this.head) {        //Caso en dónde el intercambio ocurre al comienzo de la lista
+                                e.next.prev = null;
+                                e.next = e.next.next;
+                                e.next.prev.next = e;
+                                e.prev = e.next.prev;
+                                e.next.prev = e;
+                                head = e.prev;
+                            }
                         }
                     }
                     this.print();
-                    if (e.next == null) {
+                    if (e.next == null) {       //Evita null pointer exception
                         break;
                     }
                 }
             }
-
         }
-
         return this;
     }
 

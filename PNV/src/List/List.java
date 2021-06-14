@@ -9,7 +9,7 @@ package List;
 public class List<T> {
 
     protected Node<T> head;
-    private Node<T> tail;
+    protected Node<T> tail;
     private int count;
     
 
