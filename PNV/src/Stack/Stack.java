@@ -1,15 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package List;
 
-package Stack;
-
-/**
- * 
- * @author Sammy Guergachi <sguergachi at gmail.com>
- */
-public class Stack {
+public class Stack<T> extends List<T> {
+	
+	public void push(T key) {
+		this.pushback(key);
+	}
+	public T pop() {
+		Object aux = this.topBack();
+		this.popBack();
+		return (T) aux;
+	}
+	public T top() {
+		return (T) this.topBack();
+	}
+	public boolean empty() {
+		return this.isEmpty();
+	}
 
 }
