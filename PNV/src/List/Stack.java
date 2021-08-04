@@ -1,19 +1,20 @@
 package List;
 
 public class Stack<T> extends List<T> {
-	private List<T> list = new List<>();
+	
 	public void push(T key) {
-		list.pushback(key);
+		this.pushback(key);
 	}
 	public T pop() {
-		Object aux = list.topBack();
-		list.popBack();
+		Object aux = this.topBack();
+		this.popBack();
 		return (T) aux;
 	}
 	public T top() {
-		return (T) list.topBack();
+		return (T) this.topBack();
 	}
 	public boolean empty() {
-		return list.isEmpty();
+		return this.isEmpty();
 	}
+
 }
