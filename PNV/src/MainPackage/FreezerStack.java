@@ -1,5 +1,6 @@
 package MainPackage;
 
+import List.List;
 import List.Node;
 import List.Stack;
 
@@ -22,29 +23,42 @@ public class FreezerStack extends Stack<Congelador>{
 	}
 	
 	public void sort() {
+		List<Congelador> congeladores = new List<Congelador>();
 		Congelador[] freezers = new Congelador[this.size()];
 		int size = this.size();
 		int i = 0;
 		while(!this.isEmpty()) {
 			Congelador c = this.pop();
-			freezers[i] = c;
-			i++;
+			congeladores.pushback(c);
+			//freezers[i] = c;
+			//i++;
 		}
-		int maxI = 0;
-		int max = Integer.MIN_VALUE;
-		for(int j=size-1; j>=0; j--){
-			for(i = 0;i<=j;i++) {
-				if(freezers[i].getCantDeVacunas()>max) {
-					max = freezers[i].getCantDeVacunas();
-					maxI = i;
+		
+		
+		Congelador max = new Congelador("", Integer.MIN_VALUE);
+		Congelador c =  new Congelador("", 0);
+		List<Congelador> aux = new List<Congelador>();
+		while(this.size()<size) {
+			while(!congeladores.isEmpty()) {
+				c = congeladores.topFront();
+				congeladores.popFront();
+				if(max.getCantDeVacunas() < c.getCantDeVacunas()) {
+					if(max.getCantDeVacunas()!=Integer.MIN_VALUE) {
+						aux.pushFront(max);
+					}
+					max = c; 
+				}else {
+					aux.pushFront(c);
 				}
+				
 			}
-			
-			this.push(freezers[maxI]);
-			freezers[maxI] = freezers[j];
-			max = Integer.MIN_VALUE;
+			this.push(max);
+			while(!aux.isEmpty()) {
+				congeladores.pushFront(aux.topFront());
+				aux.popFront();
+			}
+			max = new Congelador("", Integer.MIN_VALUE);
 		}
-		//this.print();
 	}
 	
 	public boolean isSorted(){
