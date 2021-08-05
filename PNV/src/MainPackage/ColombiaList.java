@@ -75,7 +75,6 @@ public class ColombiaList extends List<Region> {
                             }
                         }
                     }
-                    this.print();
                     if (e.next == null) {       //Evita null pointer exception
                         break;
                     }
