@@ -88,10 +88,11 @@ public class List<T> {
             if (tail == null) {
                 head = null;
             }
+            count--;
         } else {
             clean();
         }
-        count--;
+        
     }
 
     public T Get(int index) {

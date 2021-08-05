@@ -1,26 +1,48 @@
 package MainPackage;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
-        
-        ColombiaList colombia = new ColombiaList();
-        Region bog = new Region("Bogotá", 500000);
-        Region ant = new Region("Antioquia", 320000);
-        Region atl = new Region("Atlántico", 100000);
-        Region gua = new Region("Guaviare", 15000);
-        Region ama = new Region ("Amazonas", 500000);
-        
-        colombia.pushFront(bog);
-        colombia.pushFront(ant);
-        colombia.pushFront(atl);
-        colombia.pushFront(gua);
-        colombia.pushFront(ama);
-        
-        System.out.print("Antes de hacer sort: ");
-        colombia.print();
-        colombia.sort();
-        System.out.print("Después de hacer sort: ");
-        colombia.print();
+    	
+    	Scanner reader = new Scanner(System.in);
+    	int vacunas = reader.nextInt();
+    	FreezerStack freezerStack = new FreezerStack();
+    	for(int i = 0; i<vacunas; i++) {
+    		String tipo = reader.next();
+    		int cantVac =  Integer.parseInt(reader.next());
+    		freezerStack.push(new Congelador(tipo, cantVac));
+    	}    	
+    	freezerStack.sort();
+    	ColombiaList colombia = new ColombiaList();
+    	int regiones = reader.nextInt();
+    	for(int j = 0; j<regiones; j++) {
+    		String nombre = reader.next();
+    		int poblacion =  Integer.parseInt(reader.next());
+    		colombia.pushFront(new Region(nombre, poblacion));
+    	}
+    	colombia.sort();
+    	Congelador vac;
+    	for(int k = 0; k<colombia.size();k++){
+    		Region region = colombia.Get(k);
+        	while(region.getPoblaccion() > 0) {
+        		vac = freezerStack.pop();
+        		if(vac != null) {
+	        		if(region.getPoblaccion() >= vac.cantDeVacunas ) {
+	        			region.getFreezerStack().push(vac);
+	        			region.setPoblaccion(region.getPoblaccion()-vac.cantDeVacunas);
+	        		}else {
+	        			region.getFreezerStack().push(new Congelador(vac.tipoVacuna, region.getPoblaccion()));
+	        			vac.setCantDeVacunas(vac.getCantDeVacunas()-region.getPoblaccion());
+	        			freezerStack.push(vac);
+	        			region.setPoblaccion(0);
+	        		}
+        		}
+        	}
+        	System.out.print(region.region+" ");
+        	region.freezerStack.print();
+        	System.out.println();
+        }
     }
 }

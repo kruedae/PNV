@@ -8,11 +8,12 @@ public class Region {
     
     String region;
     int poblaccion;
-    //FreezerStack;
+    FreezerStack freezerStack;
 
     public Region(String region, int poblaccion) {
         this.region = region;
         this.poblaccion = poblaccion;
+        this.freezerStack = new FreezerStack();
     }
 
     public String getRegion() {
@@ -29,5 +30,13 @@ public class Region {
 
     public void setPoblaccion(int poblaccion) {
         this.poblaccion = poblaccion;
-    }    
+    }
+
+	public FreezerStack getFreezerStack() {
+		return freezerStack;
+	}
+
+	public void setFreezerStack(FreezerStack freezerStack) {
+		this.freezerStack = freezerStack;
+	}
 }

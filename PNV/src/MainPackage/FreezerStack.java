@@ -10,7 +10,7 @@ public class FreezerStack extends Stack<Congelador>{
 		Stack<Congelador> aux = new Stack();
 		while (!this.isEmpty()) {
 			Congelador freezer = this.pop();
-			System.out.println(freezer.getCantDeVacunas());
+			System.out.print(freezer.tipoVacuna+" "+freezer.getCantDeVacunas()+" ");
 			aux.push(freezer);
 		}
 		while (!aux.isEmpty()) {
@@ -26,7 +26,7 @@ public class FreezerStack extends Stack<Congelador>{
 		int size = this.size();
 		int i = 0;
 		while(!this.isEmpty()) {
-			Congelador c =this.pop();
+			Congelador c = this.pop();
 			freezers[i] = c;
 			i++;
 		}
@@ -39,10 +39,12 @@ public class FreezerStack extends Stack<Congelador>{
 					maxI = i;
 				}
 			}
+			
 			this.push(freezers[maxI]);
 			freezers[maxI] = freezers[j];
 			max = Integer.MIN_VALUE;
 		}
+		//this.print();
 	}
 	
 	public boolean isSorted(){
