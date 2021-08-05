@@ -38,11 +38,14 @@ public class Main {
 	        			freezerStack.push(vac);
 	        			region.setPoblaccion(0);
 	        		}
+	        		System.out.print(region.region+" ");
+	            	region.freezerStack.print();
+	            	System.out.println();
+        		}else {
+        			System.out.print(region.region+" no hay vacunas disponibles para enviar");
         		}
         	}
-        	System.out.print(region.region+" ");
-        	region.freezerStack.print();
-        	System.out.println();
+        	
         }
     }
 }
