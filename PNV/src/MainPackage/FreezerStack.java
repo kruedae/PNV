@@ -20,7 +20,7 @@ public class FreezerStack extends Stack<Congelador>{
 				this.push(freezer);
 			}
 		}else {
-			System.out.print("no hay vacunas disponibles para enviar");
+			System.out.print("	no hay vacunas disponibles para enviar");
 		}
 		
 		
@@ -28,14 +28,10 @@ public class FreezerStack extends Stack<Congelador>{
 	
 	public void sort() {
 		List<Congelador> congeladores = new List<Congelador>();
-		Congelador[] freezers = new Congelador[this.size()];
 		int size = this.size();
-		int i = 0;
 		while(!this.isEmpty()) {
 			Congelador c = this.pop();
-			congeladores.pushback(c);
-			//freezers[i] = c;
-			//i++;
+			congeladores.pushback(c);	
 		}
 		
 		
