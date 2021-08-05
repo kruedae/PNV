@@ -93,17 +93,16 @@ public class ColombiaList extends List<Region> {
     }
 
     public boolean isSorted() {
-        boolean testigo = true;
         for (Node i = this.head; i.next != null; i = i.next) {
             Region r1 = (Region) i.key;
             Region r2 = (Region) i.next.key;
             if (r1.poblaccion < r2.poblaccion) {
-                testigo = false;
+                return false;
             }
             if (i.next == null) {
                 break;
             }
         }
-        return testigo;
+        return true;
     }
 }
