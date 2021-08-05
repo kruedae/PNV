@@ -9,14 +9,18 @@ public class FreezerStack extends Stack<Congelador>{
 	
 	public void print() {
 		Stack<Congelador> aux = new Stack();
-		while (!this.isEmpty()) {
-			Congelador freezer = this.pop();
-			System.out.print(freezer.tipoVacuna+" "+freezer.getCantDeVacunas()+" ");
-			aux.push(freezer);
-		}
-		while (!aux.isEmpty()) {
-			Congelador freezer = aux.pop();
-			this.push(freezer);
+		if(!this.isEmpty()) {
+			while (!this.isEmpty()) {
+				Congelador freezer = this.pop();
+				System.out.print(freezer.tipoVacuna+" "+freezer.getCantDeVacunas()+" ");
+				aux.push(freezer);
+			}
+			while (!aux.isEmpty()) {
+				Congelador freezer = aux.pop();
+				this.push(freezer);
+			}
+		}else {
+			System.out.print("no hay vacunas disponibles para enviar");
 		}
 		
 		

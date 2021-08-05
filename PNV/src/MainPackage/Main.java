@@ -26,26 +26,28 @@ public class Main {
     	Congelador vac;
     	for(int k = 0; k<colombia.size();k++){
     		Region region = colombia.Get(k);
+    		
         	while(region.getPoblaccion() > 0) {
         		vac = freezerStack.pop();
         		if(vac != null) {
-	        		if(region.getPoblaccion() >= vac.cantDeVacunas ) {
+	        		if(region.getPoblaccion() > vac.cantDeVacunas ) {
 	        			region.getFreezerStack().push(vac);
 	        			region.setPoblaccion(region.getPoblaccion()-vac.cantDeVacunas);
+
 	        		}else {
 	        			region.getFreezerStack().push(new Congelador(vac.tipoVacuna, region.getPoblaccion()));
 	        			vac.setCantDeVacunas(vac.getCantDeVacunas()-region.getPoblaccion());
 	        			freezerStack.push(vac);
 	        			region.setPoblaccion(0);
 	        		}
-	        		
         		}else {
-        			System.out.print(region.region+" no hay vacunas disponibles para enviar");
+        			region.setPoblaccion(0);
         		}
         	}
         	System.out.print(region.region+" ");
-	            	region.freezerStack.print();
-	            	System.out.println();
+        	region.getFreezerStack().print();
+        	System.out.println();
+        	
         }
     }
 }
